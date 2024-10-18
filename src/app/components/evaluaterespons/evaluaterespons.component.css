@@ -1,0 +1,103 @@
+app-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    color: #fff;
+    display: flex;
+    flex-direction: row;
+    box-sizing: border-box;
+    
+  }
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    
+  }
+  .average-score-display {
+    margin-left: 70%;
+    color: #fff;
+    font-weight: bold;
+  }
+  .no-tasks{
+    color: #fff;
+    font-weight: bold;
+    font-size: 20px;
+  }
+  .container {
+    padding: 20px;
+    max-width:70%;
+    margin-left: 25%;
+    margin-top: 3%;
+    margin-bottom: 5%;
+    background-color: #f8be30;
+    border-radius: 8px;
+   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .filters-container {
+    display: flex;
+    gap: 50px; /* Aradaki boşluk miktarını ayarlar */
+    margin-bottom: 2%;
+    margin-left: 1%;
+  }
+  
+  .filter-container {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  
+  .filter-container label {
+    margin-right: 10px;
+    font-size: 16px;
+  }
+  
+  .filter-container select {
+    padding: 8px;
+    font-size: 16px;
+  }
+  
+  .tasks-container {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .task {
+    background: #fff;
+    border: 1px solid #ddd;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 10px;
+  }
+  
+  .task h3 {
+    margin: 0;
+    font-size: 18px;
+  }
+  
+  .task p {
+    margin: 5px 0 0;
+    font-size: 14px;
+  }
+  .task-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .h3wigg{
+    margin-right : 2%;
+  }
+  .task-info {
+    flex-grow: 1;
+  }
+  .h3wig{
+    font-weight: bold;
+  }
+  .task-button {
+    margin-left: auto;
+    background-color: #333;
+    color: #fff;
+  }

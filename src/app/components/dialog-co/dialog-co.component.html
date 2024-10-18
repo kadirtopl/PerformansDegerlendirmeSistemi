@@ -1,0 +1,124 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+<div class="contaner">
+ 
+  <h6 mat-dialog-title class="dialog-title">
+    Kişi Değerlendirme
+    <mat-icon class="right-icon" (click)="onNoClick()">x</mat-icon>
+  </h6>
+
+
+  <div mat-dialog-content>
+    <div class="profile">
+      <img class="profile-pic" src="{{data.imageurl}}" alt="Profile Picture">
+      <div class="profile-info">
+        <p class="okso">Ad Soyad</p>
+      <p>{{data.name}}</p>
+      </div>
+    </div>
+    <ng-container *ngIf="visible===true">
+    <div class="evaluation">
+  
+      <div class="table-responsive">
+        <div class="datatable-container">
+          
+            <div class="filter-container">
+        
+            </div>
+            <table>
+              <thead>
+                <tr>
+           
+                  <th>
+                    <div class="header-content"> 
+                     Soru
+                    <button *ngIf="sortColumn === 'evaluatequestion'" [ngClass]="{ 'asc': sortOrder === 'asc', 'desc': sortOrder === 'desc' }" (click)="sort('evaluatequestion')">&#9660;</button>
+                    <button *ngIf="sortColumn !== 'evaluatequestion'" (click)="sort('evaluatequestion')">&#9650;</button>
+                    
+                  </div>
+                  </th>
+                  <th>
+                    <div class="header-content"> 
+                      Eşleştir
+            
+           
+                    </div>
+           
+                  </th>
+             
+                    <th>
+      
+                      <div class="header-content"> 
+                        
+                       Puan
+                
+              
+                      </div >
+                      </th>
+                   
+                
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let user of kilteruser">
+                  <td>
+                  <p style="font-size: 9px;">
+                    {{ user.evaluatequestion }}
+                    
+                  </p>
+                </td>
+                <td>
+                  <input type="checkbox" name="match" (change)="toggleSelection(user.evaluatequestionid, 0, $event)">
+                </td>
+                <td>
+                  <input type="number" class="number-input" max="10" oninput="if(this.value > 10) this.value = 10;"(input)="updatePuan(user.evaluatequestionid, $any($event.target).value)">
+
+                </td>
+              
+          
+              
+               
+                </tr>
+              </tbody>
+            </table>
+          </div>
+    
+    </div>
+    </div>
+    <div class="mar-dialog"> 
+      <button class="custom-button" (click)="addQuestionAnswers()" >Kaydet</button>
+    </div>
+    </ng-container>
+    <ng-container *ngIf="visible===false">
+    <div class="wrapper">
+   
+      <div class="controls">
+        <div class="filters">
+          <span class="filter" [class.active]="currentFilter === 'all'" (click)="filterTasks('all')">Hepsi</span>
+          <span class="filter" [class.active]="currentFilter === 'pending'" (click)="filterTasks('pending')">Beklenen</span>
+          <span class="filter" [class.active]="currentFilter === 'completed'" (click)="filterTasks('completed')">Tamamlandı</span>
+        </div>
+      </div>
+      <ul class="task-box">
+        <li *ngFor="let task of filteredTasks()" [class.completed]="task.status">
+
+          {{ task.taskname }}
+          <i *ngIf="task.status === 'F' && task.iscompleted === 'T'" class="fas fa-check-circle status-icon" aria-hidden="true"></i>
+          <i *ngIf="task.status !== 'F'" class="fas fa-hourglass-half status-icon" aria-hidden="true"></i>
+          <span class="ellipsis-icon" [matMenuTriggerFor]="menu">...</span>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)=" viewTaskDetail(task)" >Görev Detay</button>
+            <button mat-menu-item 
+            *ngIf="task.status === 'F' && task.iscompleted === 'F'" 
+            (click)="degerlendir(task)">
+      Değerlendir
+    </button>
+          </mat-menu>
+        </li>
+      </ul>
+    </div>
+  </ng-container>
+  </div>
+
+      
+</div>
